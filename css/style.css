@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    color: inherit;
+  }
+
+  html, body, main {
+    height: 100%;
+}
+
+.inicio {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100%;
+    }
+    
+    .imagen { 
+        grid-area: 1 / 1 / 7 / 3;
+        background-color: #059e85;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+    }
+     .imagen img{
+        max-width: 100%;
+
+    } 
+
+    .div2 { 
+        grid-area: 2 / 3 / 3 / 5; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .div2 h1 {
+        font-size: 50px;
+    }
+   
+    .div3 { 
+        grid-area: 4 / 3 / 5 / 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+     }
+    .div4 { 
+        grid-area: 5 / 3 / 6 / 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+     }
+
+     .inicio .boton {
+        padding: 30px 100px;
+        border-radius: 30px;
+        border: none;
+        background-color: #059e85;
+        color: white;
+        font-size: 20px;
+     }
+
+     .inicio button:hover {
+        background-color: #1fcaae;
+     }
+
+     .div5 { 
+        grid-area: 6 / 3 / 7 / 4; 
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+     .div6 { 
+        grid-area: 6 / 4 / 7 / 5;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+     .inicio .botonMenor {
+        padding: 20px 80px;
+        border-radius: 30px;
+        border: none;
+        background-color: #059e85;
+        color: white;
+        font-size: 15px;
+     }

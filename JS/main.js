@@ -175,7 +175,25 @@ inicioBienvenida();
 
 
 
-alert("Bienvenidos al Kinesia Online");
-inicioBienvenida();
+/* alert("Bienvenidos al Kinesia Online");
+inicioBienvenida(); */
 
 
+document.querySelector("#inicioSesion").addEventListener('click', () => {
+    inicioSesion()
+
+    div4.style.display = 'none';
+    div5.style.display = 'flex';
+    div6.style.display = 'flex';
+})
+
+document.querySelector("#registroNuevo").addEventListener('click', () => {
+    registroNuevo()
+    div3.style.display = 'none';
+    div5.style.display = 'flex';
+    div6.style.display = 'flex';
+})
+const div3 = document.querySelector('.div3')
+const div4 = document.querySelector('.div4')
+const div5 = document.querySelector('.div5')
+const div6 = document.querySelector('.div6')
