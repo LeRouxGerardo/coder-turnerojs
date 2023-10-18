@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="multimedia/logo.png" type="image/x-icon">
     <title>Kinesia Online</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <script src="JS/main.js" defer></script>
 </head>
 
@@ -19,26 +19,94 @@
                 <img src="multimedia/portada.png" alt="Portada Kinesia">
             </div>
 
-            <div class="div2"> 
+            <div class="tituloPortada"> 
                 <h1 class="titulo">Kinesia Online</h1> 
             </div>
-            <div class="div3"> 
+            <div class="inicioPortada"> 
                 <button class="boton" id="inicioSesion" type="submit">Ya Soy Paciente</button> 
             </div>
-            <div class="div4"> 
+            <div class="registroPortada"> 
                 <button class="boton" id="registroNuevo" type="submit">Registrarme</button>
             </div>
-            <div class="div5"> 
-                <button class="botonMenor" id="reset" type="reset">Borrar</button>
+            <form class="formInicio">
+                
+                <input type="email" name="mailUsuario" id="mailUsuario" placeholder="Ingrese su Mail">
+                <div class="usuarioError">
+                    <p>Usuario no encontrado.</p>
+                    <p>Primera vez? Proba Registrarte!</p>
+                </div>
+                   
+                <input type="password" name="passUsuario" id="passUsuario" placeholder="Ingrese su DNI">
+                    <div class="passError">
+                        <p>Contraseña incorrecta</p>
+                    </div>
+                <div class="botonesPortada">
+                    <div class="ingresarPortada"> 
+                        <button class="botonMenor" id="ingresar" type="button">Ingresar</button>
+                    </div>
+                    <div class="borrarPortada"> 
+                        <button class="botonMenor" id="reset" type="reset">Borrar</button>
+                    </div>
+                    <div class="volverPortada"> 
+                        <button class="botonMenor" id="volver" type="button">Volver</button>
+                    </div>
+                </div>
+            </form>
+            <form class="formRegistro">
+                <input type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Ingrese su Nombre">
+                <input type="text" name="apellidoUsuario" id="apellidoUsuario" placeholder="Ingrese su Apellido">
+                <input type="number" name="celularUsuario" id="celularUsuario" placeholder="Ingrese su Celular">
+                <div class="whatsappCheck">
+                    <label for="whatsapp">Nos comunicamos por Whatsapp?</label>
+                    <input type="checkbox" name="whatsapp" id="whatsapp" >
+                </div>
+                <input type="email" name="mailUsuarioNuevo" id="mailUsuarioNuevo" placeholder="Ingrese su Mail">
+                <input type="number" name="dniUsuario" id="dniUsuario" placeholder="Ingrese su DNI">
+                    <div class="ingresarRegistro"> 
+                        <button class="botonMenor" id="ingresarRegistro" type="button">Registrarse</button>
+                    </div>
+                    
+                    <p class="registroError">Revisa los datos ingresados</p>
+                    
+                    <div class="borrarRegistro"> 
+                        <button class="botonMenor" id="resetRegistro" type="reset">Borrar</button>
+                    </div>
+                    <div class="volverRegistro"> 
+                        <button class="botonMenor" id="volverRegistro" type="button">Volver</button>
+                    </div>
+                
+            </form>
+            
+            <div class="envioMail">
+                <p>Recibira un código de verificación en su mail, <br>por favor revise su mail para continuar.</p>
             </div>
-            <div class="div6"> 
-                <button class="botonMenor" id="volver" type="reset">Volver</button>
+            
+                <button class="simulaCodigo" id="simulaCodigo" type="button">Verificar Código</button>
+            
+            <div class="registroCorrecto">
+                <p class="txt1">¡Registro completo!</p>  
+                <p class="txt2">Ya puedes iniciar sesión.</p>
+                <p class="txt3">Tu usuario es tu mail  y tu contraseña es tu DNI</p>
+                <button class="volverInicio" id="volverInicio" type="button">Ir a Inicio</button>
             </div>
-            </div>
-
+                
+            
     </main>
-
-
-    
+    <div class="redireccionCarga">
+        <ul class="imagenCarga">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="mensajeCarga">
+            <p>
+                ...Hola "nombreUsuarioenelarray"... 
+            </p>
+                
+            <p>
+                Ingresando a Kinesia Online
+            </p>
+        </div>
+</div>
 </body>
 </html>

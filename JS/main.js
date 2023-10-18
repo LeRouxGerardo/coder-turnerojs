@@ -11,189 +11,167 @@ class Paciente{
 
     }
 }
-function inicioBienvenida(){
-    
-    const menu = "Elige una opcion: \n1- Ya soy paciente\n2- Soy paciente nuevo\n3- Salir";
-
-    let opcion = prompt(menu);
- 
-    switch (opcion) {
-
-        case '1':
-            inicioSesion();
-            break;
-        case '2':
-            registroNuevo();
-            break;
-        case '3':
-            break;    
-        default:
-            alert("Opción no válida");
-            inicioBienvenida();
-    }
-}
-   
-function validarContraseña(usuarioRegistrado, contraseñaUsuario) {
+console.log (usuarios)
 
 
-    while(usuarioRegistrado.dni !== contraseñaUsuario){
-        alert ("Contraseña Incorrecta.  ***Recuerde que su Contraseña de acceso es su DNI ***")
-        contraseñaUsuario = prompt ("Contraseña  ***Recuerde que su Contraseña de acceso es su DNI ***");
-    }
-    
-        alert("inicio de sesión exitoso - ... Ingresando...")
-        
-    }
+function validarUsuario() {
+    const mailUsuario = document.getElementById("mailUsuario").value;
+    const contraseñaUsuario = document.getElementById("passUsuario").value;
 
+    const usuarioRegistrado = usuarios.find((usuario) => usuario.mailContacto.toLowerCase() === mailUsuario.toLowerCase());
 
-function validarUsuario(){
-    let nombreUsuario = prompt("Nombre de Usuario ***Recuerde que su Usuario es su mail ***");
-
-    const usuarioRegistrado = usuarios.find((usuario) => usuario.mailContacto.toLowerCase() === nombreUsuario.toLowerCase());
-
-    if(usuarioRegistrado) {
-            let contraseñaUsuario = prompt ("Contraseña  ***Recuerde que su Contraseña de acceso es su DNI ***");
-            validarContraseña(usuarioRegistrado, contraseñaUsuario);
-    }
-    else{
-        alert("Usuario no encontrado. Ingrese por la opción 'Soy paciente nuevo' para registrarse")
-        inicioBienvenida()
-    }
-
-
-}
-
-
+    const usuarioIncorrecto = document.querySelector(".usuarioError");
     
 
+    if (usuarioRegistrado) {
+        const dniUsuario = parseInt(contraseñaUsuario, 10);
+        if (usuarioRegistrado.dni !== dniUsuario) {
+            usuarioIncorrecto.style.display = "none"; 
+            passIncorrecta.style.display = "block"; 
+        } else {
+            usuarioIncorrecto.style.display = "none"; 
+            passIncorrecta.style.display = "none"; 
+            redireccionCarga.style.display = "grid";
+            inicio.style.display = 'none'; 
 
-
-function inicioSesion(){
-    
-    validarUsuario()
-    
-    
-}
-
-
-function ingresarDni () {
-    let nuevoDni=  prompt ("Ingrese su dni (sin puntos)") ;
-    if(validarDni(nuevoDni)){
-        return nuevoDni;
-    }
-    else{
-        return ingresarDni();
+        }
+    } else {
+        usuarioIncorrecto.style.display = "block"; 
+        passIncorrecta.style.display = "none"; 
     }
 }
-function validarDni (DNI) {
-
-    if (DNI > 1000000 && DNI < 100000000) {
-    return true
-    }
-    else{
-    alert("DNI no válido, Recuerde ingresar solo números sin puntos");
-    return false    
-}
-}
-
-function ingresarCelular () {
-    let numeroContacto = prompt ("Ingrese su número de Contacto sin 0 y sin 15");
-    if(validarCelular(numeroContacto)){
-        return numeroContacto;
-    }
-    else{
-        return ingresarCelular();
-    }
-}
-
-function validarCelular(celular) {
-
-    if (celular > 1000000000 && celular < 9999999999) {
-        return true
-    }
-    else{
-        alert("Celular no válido, Recuerde ingresar su número de Contacto sin 0 y sin 15");
-        return false
-    }
-}
-
 
 
 
 function usuarioCreado() {
     
-    alert("¡Registro completo! Ya puedes iniciar sesión. Tu usuario es tu mail  y tu contraseña es tu DNI");
-  
+    registroCorrecto.style.display = 'grid';  
+    enviaMail.style.display = 'none';
+    simulaCodigo.style.display = 'none';
+    volverInicio.addEventListener('click', () => {
+        registroCorrecto.style.display = 'none';
+        inicioPortada.style.display = 'flex';
+        registroPortada.style.display = 'flex';
+    })
 }
+
 
 function confirmaMail() {
 
-    let codigo = confirm("Ingresar código de verificación.");
-    /*el confirm es solo para simular que el usuario recibe el código de verificación por mail y lo ingresa*/
-    if (codigo) {
-        usuarioCreado();
-    }
-    else {
-        alert("Es necesario confirmar el mail para continuar");
-        confirmaMail()
-    } 
     
+    const formRegistro = document.querySelector(".formRegistro");
+    const simulaCodigo = document.querySelector("#simulaCodigo");
+    
+    formRegistro.style.display = 'none';
+    enviaMail.style.display = 'block';
+    
+    
+    if (simulaCodigo) {
+        simulaCodigo.style.display = 'block';
+        simulaCodigo.addEventListener('click', () => {
+            usuarioCreado();
+        });
+        
+    } 
 }
-
-
 
 
 function registroNuevo(){
-    alert("Te vamos a pedir unos datos para continuar")
-let nuevoNombre = prompt ("Ingrese su nombre");
-let nuevoApellido = prompt ("Ingrese su apellido");
+let nuevoNombre = document.getElementById("nombreUsuario").value;
+let nuevoApellido = document.getElementById("apellidoUsuario").value;
+let nuevoDni =  parseInt(document.getElementById("dniUsuario").value, 10);
+let numeroContacto = parseInt(document.getElementById("celularUsuario").value, 10); 
+let mailContacto = document.getElementById("mailUsuarioNuevo").value;
 
-let nuevoDni = ingresarDni();
 
-let numeroContacto = ingresarCelular(); 
+    if (
+        nuevoNombre !== '' &&
+        nuevoApellido !== '' &&
+        parseInt(nuevoDni) > 1000000 && nuevoDni < 100000000 &&
+        numeroContacto > 1000000000 && numeroContacto < 9999999999 &&
+        mailContacto !== '' 
+    
+        ) { confirmaMail()
 
-let mailContacto = prompt ("Ingrese Mail de Contacto");
+            const nuevoPaciente = new Paciente(
+                nuevoNombre,
+                nuevoApellido,
+                nuevoDni,
+                numeroContacto,
+                mailContacto,
+              );
+              usuarios.push(nuevoPaciente);
+              
+    } else {
+        errorRegistro.style.display = 'block';  
+    }
 
-alert("Recibira un código de verificación en su mail, por favor revise su mail para continuar.");
-
-confirmaMail();
-
-const nuevoPaciente = new Paciente(
-    nuevoNombre,
-    nuevoApellido,
-    nuevoDni,
-    numeroContacto,
-    mailContacto
-  );
-  usuarios.push(nuevoPaciente);
-
-  console.log(nuevoPaciente)
-  console.log(usuarios)
-inicioBienvenida();
 }
-
-
-
-
-/* alert("Bienvenidos al Kinesia Online");
-inicioBienvenida(); */
-
+const inicio = document.querySelector('.inicio')
+const inicioPortada = document.querySelector('.inicioPortada')
+const registroPortada = document.querySelector('.registroPortada')
+const formInicio = document.querySelector('.formInicio')
+const formRegistro = document.querySelector('.formRegistro')
+const iniciarPortada = document.querySelector('.iniciarPortada')
+const volverPortada = document.querySelector('.volverPortada')
+const volverRegistro = document.querySelector('.volverRegistro')
+const usuarioIncorrecto = document.querySelector(".usuarioError")
+const envioMail = document.querySelector(".envioMail")
+const simulaCodigo = document.querySelector(".simulaCodigo")
+const errorRegistro = document.querySelector(".registroError")
+const borrarRegistro = document.querySelector(".borrarRegistro")
+const passIncorrecta = document.querySelector(".passError")
+const registroCorrecto = document.querySelector(".registroCorrecto")
+const enviaMail = document.querySelector(".envioMail")
+const volverInicio = document.querySelector('.volverInicio')
+const redireccionCarga = document.querySelector('.redireccionCarga')
 
 document.querySelector("#inicioSesion").addEventListener('click', () => {
-    inicioSesion()
-
-    div4.style.display = 'none';
-    div5.style.display = 'flex';
-    div6.style.display = 'flex';
+    
+    inicioPortada.style.display = 'none';
+    registroPortada.style.display = 'none';
+    formInicio.style.display= 'grid';
 })
 
 document.querySelector("#registroNuevo").addEventListener('click', () => {
-    registroNuevo()
-    div3.style.display = 'none';
-    div5.style.display = 'flex';
-    div6.style.display = 'flex';
+
+    inicioPortada.style.display = 'none';
+    registroPortada.style.display= 'none';
+    formRegistro.style.display= 'grid';
 })
-const div3 = document.querySelector('.div3')
-const div4 = document.querySelector('.div4')
-const div5 = document.querySelector('.div5')
-const div6 = document.querySelector('.div6')
+
+
+document.querySelector("#ingresar").addEventListener('click', () => {
+    validarUsuario()
+    
+})
+
+ document.querySelector("#ingresarRegistro").addEventListener('click', () => {
+    
+      registroNuevo();
+    
+    
+})
+ 
+
+
+volverPortada.addEventListener('click', () => {
+    inicioPortada.style.display = 'flex';
+    registroPortada.style.display = 'flex';
+    formInicio.style.display= 'none';
+    usuarioIncorrecto.style.display = "none"; 
+    passIncorrecta.style.display = "none"; 
+})
+
+volverRegistro.addEventListener('click', () => {
+    inicioPortada.style.display = 'flex';
+    registroPortada.style.display = 'flex';
+    formRegistro.style.display= 'none';
+    errorRegistro.style.display = 'none';
+})
+
+
+borrarRegistro.addEventListener('click', () => {
+    errorRegistro.style.display = 'none';
+
+})
