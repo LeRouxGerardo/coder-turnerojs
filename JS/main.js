@@ -11,14 +11,16 @@ class Paciente{
 
     }
 }
-console.log (usuarios)
+
 
 
 function validarUsuario() {
     const mailUsuario = document.getElementById("mailUsuario").value;
     const contraseñaUsuario = document.getElementById("passUsuario").value;
 
-    const usuarioRegistrado = usuarios.find((usuario) => usuario.mailContacto.toLowerCase() === mailUsuario.toLowerCase());
+    const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || [];
+    const usuarioRegistrado = usuariosGuardados.find((usuario) => usuario.mailContacto.toLowerCase() === mailUsuario.toLowerCase());
+
 
     const usuarioIncorrecto = document.querySelector(".usuarioError");
     
@@ -48,6 +50,7 @@ function usuarioCreado() {
     registroCorrecto.style.display = 'grid';  
     enviaMail.style.display = 'none';
     simulaCodigo.style.display = 'none';
+    
     volverInicio.addEventListener('click', () => {
         registroCorrecto.style.display = 'none';
         inicioPortada.style.display = 'flex';
@@ -100,8 +103,19 @@ let mailContacto = document.getElementById("mailUsuarioNuevo").value;
                 numeroContacto,
                 mailContacto,
               );
-              usuarios.push(nuevoPaciente);
+            
+              let usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || [];
+              usuariosGuardados.push(nuevoPaciente);
+
+              localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
               
+              document.getElementById("nombreUsuario").value = '';
+              document.getElementById("apellidoUsuario").value = '';
+              document.getElementById("dniUsuario").value = '';
+              document.getElementById("celularUsuario").value = '';
+              document.getElementById("mailUsuarioNuevo").value = '';
+
+
     } else {
         errorRegistro.style.display = 'block';  
     }
@@ -142,12 +156,12 @@ document.querySelector("#registroNuevo").addEventListener('click', () => {
 
 
 document.querySelector("#ingresar").addEventListener('click', () => {
-    validarUsuario()
+    validarUsuario();
     
 })
 
  document.querySelector("#ingresarRegistro").addEventListener('click', () => {
-    
+      
       registroNuevo();
     
     
