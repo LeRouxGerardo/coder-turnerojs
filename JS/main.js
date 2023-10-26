@@ -1,4 +1,3 @@
-let turno = null
 let usuarios =[]
 
 class Paciente{
@@ -22,24 +21,33 @@ function validarUsuario() {
     const usuarioRegistrado = usuariosGuardados.find((usuario) => usuario.mailContacto.toLowerCase() === mailUsuario.toLowerCase());
 
 
-    const usuarioIncorrecto = document.querySelector(".usuarioError");
+    
     
 
     if (usuarioRegistrado) {
         const dniUsuario = parseInt(contraseñaUsuario, 10);
         if (usuarioRegistrado.dni !== dniUsuario) {
-            usuarioIncorrecto.style.display = "none"; 
-            passIncorrecta.style.display = "block"; 
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en ingreso',
+                text: 'Usuario o Contraseña incorrecto',
+                footer: '<a href="../">¿Primera vez? ¡Proba registrarte!</a>'
+            })
+
+
         } else {
-            usuarioIncorrecto.style.display = "none"; 
-            passIncorrecta.style.display = "none"; 
             redireccionCarga.style.display = "grid";
             inicio.style.display = 'none'; 
 
         }
     } else {
-        usuarioIncorrecto.style.display = "block"; 
-        passIncorrecta.style.display = "none"; 
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Error en ingreso',
+            text: 'Usuario o Contraseña incorrecto',
+            footer: '<a href="../">¿Primera vez? ¡Proba registrarte!</a>'
+        })
     }
 }
 
@@ -117,7 +125,11 @@ let mailContacto = document.getElementById("mailUsuarioNuevo").value;
 
 
     } else {
-        errorRegistro.style.display = 'block';  
+        Swal.fire({
+            icon: 'error',
+            title: 'Error en Registro',
+            text: 'Reviste los datos ingresados',
+        })
     }
 
 }
@@ -129,16 +141,14 @@ const formRegistro = document.querySelector('.formRegistro')
 const iniciarPortada = document.querySelector('.iniciarPortada')
 const volverPortada = document.querySelector('.volverPortada')
 const volverRegistro = document.querySelector('.volverRegistro')
-const usuarioIncorrecto = document.querySelector(".usuarioError")
 const envioMail = document.querySelector(".envioMail")
 const simulaCodigo = document.querySelector(".simulaCodigo")
-const errorRegistro = document.querySelector(".registroError")
 const borrarRegistro = document.querySelector(".borrarRegistro")
-const passIncorrecta = document.querySelector(".passError")
 const registroCorrecto = document.querySelector(".registroCorrecto")
 const enviaMail = document.querySelector(".envioMail")
 const volverInicio = document.querySelector('.volverInicio')
 const redireccionCarga = document.querySelector('.redireccionCarga')
+
 
 document.querySelector("#inicioSesion").addEventListener('click', () => {
     
@@ -173,19 +183,11 @@ volverPortada.addEventListener('click', () => {
     inicioPortada.style.display = 'flex';
     registroPortada.style.display = 'flex';
     formInicio.style.display= 'none';
-    usuarioIncorrecto.style.display = "none"; 
-    passIncorrecta.style.display = "none"; 
 })
 
 volverRegistro.addEventListener('click', () => {
     inicioPortada.style.display = 'flex';
     registroPortada.style.display = 'flex';
     formRegistro.style.display= 'none';
-    errorRegistro.style.display = 'none';
 })
 
-
-borrarRegistro.addEventListener('click', () => {
-    errorRegistro.style.display = 'none';
-
-})

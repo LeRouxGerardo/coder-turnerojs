@@ -83,22 +83,7 @@
         grid-area: 2 / 2 / 3 / 4;
         
      }
-     .usuarioError {
-        grid-area: 3 / 2 / 4 / 4;
-        text-align: center;
-        color: #ff0000;
-        display: none;
-     }
      
-     .passError {
-        grid-area: 5 / 2 / 6 / 4;
-        text-align: center;
-        color: #ff0000;
-        display: none;
-     }
-     
-
-
      #passUsuario {
         grid-area: 4 / 2 / 5 / 4;
        
