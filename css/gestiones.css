@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    color: inherit;
+  }
+
+header {
+    background-color: #059e85;
+    color: white;
+    text-align: center;
+}
+header img{
+    height: 100px;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+main {
+    padding: 20px;
+}
+
+div {
+    margin-bottom: 30px;
+}
+
+
+ .datosPaciente{
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.sacarTurno {
+    background-color: #f9f9f9;
+    padding: 20px;
+}

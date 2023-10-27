@@ -285,11 +285,3 @@
         animation: loading 1s infinite linear;
       }
 
-      .mensajeCarga {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        font-size: 25px;
-        color: #059e85;
-      }

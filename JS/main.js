@@ -38,6 +38,7 @@ function validarUsuario() {
         } else {
             redireccionCarga.style.display = "grid";
             inicio.style.display = 'none'; 
+            window.location.href = 'datosPaciente.html';
 
         }
     } else {
